@@ -1,8 +1,8 @@
 {
   "name": "nest-graphql",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Nest GraphQL Example",
+  "author": "DONGGEON LIM <ooqwe486@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
@@ -15,13 +15,18 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand"
   },
   "dependencies": {
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0",
+    "@nestjs/graphql": "^6.4.2",
     "@nestjs/platform-express": "^6.0.0",
+    "apollo-server-express": "^2.8.1",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.10.0",
+    "graphql": "^14.4.2",
+    "graphql-tools": "^4.0.5",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3"

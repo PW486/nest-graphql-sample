@@ -25,6 +25,8 @@ lerna-debug.log*
 *.launch
 .settings/
 *.sublime-workspace
+/.theia
+.gitpod.yml
 
 # IDE - VSCode
 .vscode/*
