@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from 'type-graphql';
-// import { Column, Entity, ManyToOne, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+// import { Column, Entity, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { AccountEntity } from '../account/account.entity';
 
 @ObjectType()
@@ -23,12 +23,11 @@ export class ArticleEntity {
 
   @Field()
   // @Column('text')
-  public text: string;
+  public content: string;
 
   @Field()
-  // @Column({ nullable: true })
-  public photo?: string;
+  public accountId: string;
 
-  // @ManyToOne(type => AccountEntity, { nullable: false })
+  @Field(type => AccountEntity)
   public account: AccountEntity;
 }

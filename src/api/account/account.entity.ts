@@ -1,6 +1,6 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import { ArticleEntity } from 'src/api/article/article.entity';
-// import { Column, Entity, OneToMany, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+// import { Column, Entity, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @ObjectType()
 // @Entity('account')
@@ -26,5 +26,5 @@ export class AccountEntity {
   public password: string;
 
   @Field(type => [ArticleEntity])
-  articles: ArticleEntity[];
+  public articles: ArticleEntity[];
 }

@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { NewArticleInput } from './dto/new-article.input';
-import { ArticlesArgs } from './dto/articles.args';
+import { AddArticleInput } from './dto/add-article.input';
+import { GetArticlesArgs } from './dto/get-articles.args';
 import { ArticleEntity } from './article.entity';
 import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class ArticleService {
-  private readonly articles: Partial<ArticleEntity>[] = [{ id: '1', title: 'ttte', text: '4444' }];
+  private readonly articles: Partial<ArticleEntity>[] = [{ id: '1', title: 'password', content: '486', accountId: '1' }];
 
-  async create(data: NewArticleInput): Promise<ArticleEntity> {
+  async create(data: AddArticleInput): Promise<ArticleEntity> {
     let newArticle: Partial<ArticleEntity> = {};
     Object.assign(newArticle, data, { id: uuid() });
     this.articles.push(newArticle);
@@ -19,7 +19,7 @@ export class ArticleService {
     return this.articles.find(article => article.id === id) as ArticleEntity;
   }
 
-  async findAll(articleArgs: ArticlesArgs): Promise<ArticleEntity[]> {
+  async findAll(articleArgs: GetArticlesArgs): Promise<ArticleEntity[]> {
     return this.articles as ArticleEntity[];
   }
 

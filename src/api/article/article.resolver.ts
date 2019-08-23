@@ -2,37 +2,45 @@ import { NotFoundException } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, ResolveProperty, Parent } from '@nestjs/graphql';
 import { ArticleEntity } from './article.entity';
 import { ArticleService } from './article.service';
-import { ArticlesArgs } from './dto/articles.args';
-import { NewArticleInput } from './dto/new-article.input';
+import { GetArticlesArgs } from './dto/get-articles.args';
+import { AddArticleInput } from './dto/add-article.input';
+import { AccountEntity } from '../account/account.entity';
+import { AccountService } from '../account/account.service';
 
 @Resolver(of => ArticleEntity)
 export class ArticleResolver {
   constructor(
-    private readonly articleService: ArticleService
+    private readonly articleService: ArticleService,
+    private readonly accountService: AccountService,
   ) {}
 
   @Query(returns => ArticleEntity, { name: 'article' })
   async getArticle(@Args('id') id: string): Promise<ArticleEntity> {
     const article = await this.articleService.findOneById(id);
-    if (!article) {
-      throw new NotFoundException(id);
-    }
+    if (!article) throw new NotFoundException(id);
+
     return article;
   }
 
   @Query(returns => [ArticleEntity], { name: 'articles' })
-  async getArticles(@Args() articlesArgs: ArticlesArgs): Promise<ArticleEntity[]> {
-    return await this.articleService.findAll(articlesArgs);
+  async getArticles(@Args() args: GetArticlesArgs): Promise<ArticleEntity[]> {
+    return await this.articleService.findAll(args);
   }
 
   @Mutation(returns => ArticleEntity)
-  async addArticle(@Args('newArticleData') newArticleData: NewArticleInput): Promise<ArticleEntity> {
-    const article = await this.articleService.create(newArticleData);
+  async addArticle(@Args('data') data: AddArticleInput): Promise<ArticleEntity> {
+    const article = await this.articleService.create(data);
     return article;
   }
 
   @Mutation(returns => Boolean)
-  async removeArticle(@Args('id') id: string) {
+  async delArticle(@Args('id') id: string) {
     return await this.articleService.remove(id);
+  }
+
+  @ResolveProperty('account', () => AccountEntity)
+  async getAccount(@Parent() article: ArticleEntity): Promise<AccountEntity> {
+    const { accountId } = article;
+    return await this.accountService.findOneById(accountId);
   }
 }
