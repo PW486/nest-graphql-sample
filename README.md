@@ -1,37 +1,25 @@
-# Nest GraphQL Sample Kit
+<h1 align="center">🐱 Nest GraphQL Sample Kit</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/PW486/nest-graphql/blob/master/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
+  </a>
+</p>
 
+> Nest GraphQL code first based (with type-graphql) initial project. read more [here](https://docs.nestjs.com/graphql/quick-start#code-first)
+
+## Usage
+
+```sh
+> npm install
+> npm run start
 ```
-src
-├── account
-|  ├── account.entity.ts
-|  ├── account.graphql
-|  ├── account.module.ts
-|  ├── account.resolver.ts
-|  ├── account.service.ts
-|  └── dto
-|     └── create-article.dto.ts
-├── app.module.ts
-├── article
-|  ├── article.entity.ts
-|  ├── article.graphql
-|  ├── article.module.ts
-|  ├── article.resolver.ts
-|  ├── article.service.ts
-|  └── dto
-├── auth
-|  ├── auth.module.ts
-|  └── auth.service.ts
-├── common
-|  ├── common.module.ts
-|  ├── decorators
-|  |  └── account.decorator.ts
-|  ├── filters
-|  ├── guards
-|  |  └── auth.guard.ts
-|  ├── middlewares
-|  └── scalars
-|     └── date.scalar.ts
-├── generate-typings.ts
-├── graphql.ts
-└── main.ts
-```
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## License
+
+Copyright © 2019 [DONGGEON LIM](https://github.com/PW486).<br />
+This project is [MIT](https://github.com/PW486/nest-graphql/blob/master/LICENSE) licensed.

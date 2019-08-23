@@ -4,6 +4,10 @@
   "description": "Nest GraphQL Sample Kit",
   "author": "DONGGEON LIM <ooqwe486@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PW486/nest-graphql.git"
+  },
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
