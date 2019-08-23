@@ -21,8 +21,7 @@ export class AccountEntity {
   @Column({ type: 'text', unique: true })
   public email: string;
 
-  @Field()
-  @Column('text')
+  @Column({ type: 'text' })
   public password: string;
 
   @Field(type => [ArticleEntity])

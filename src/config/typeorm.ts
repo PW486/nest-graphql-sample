@@ -8,6 +8,6 @@ export default {
   password: process.env.DB_PASSWORD || 'test',
   database: process.env.DB_NAME || 'test',
   synchronize: Boolean(process.env.DB_SYNC) || false,
+  logging: Boolean(process.env.DB_LOGGING) || true,
   entities: [join(__dirname, '..', '**/**.entity.{ts,js}')],
-  logging: process.env.NODE_ENV === 'development' ? ['error', 'query'] : ['error'],
 };

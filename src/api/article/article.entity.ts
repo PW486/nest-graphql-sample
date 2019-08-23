@@ -1,31 +1,32 @@
 import { Field, ID, ObjectType } from 'type-graphql';
-// import { Column, Entity, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, Entity, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { AccountEntity } from '../account/account.entity';
 
 @ObjectType()
-// @Entity('article')
+@Entity('article')
 export class ArticleEntity {
   @Field(type => ID)
-  // @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   public id: string;
 
   @Field()
-  // @CreateDateColumn({ type: 'timestamptz' })
+  @CreateDateColumn({ type: 'timestamp with time zone' })
   public createdAt: Date;
 
   @Field()
-  // @UpdateDateColumn({ type: 'timestamptz' })
+  @UpdateDateColumn({ type: 'timestamp with time zone' })
   public updatedAt: Date;
 
   @Field()
-  // @Column()
+  @Column({ type: 'text' })
   public title: string;
 
   @Field()
-  // @Column('text')
+  @Column({ type: 'text' })
   public content: string;
 
   @Field()
+  @Column({ type: 'text' })
   public accountId: string;
 
   @Field(type => AccountEntity)

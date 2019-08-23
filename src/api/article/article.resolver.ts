@@ -16,10 +16,7 @@ export class ArticleResolver {
 
   @Query(returns => ArticleEntity, { name: 'article' })
   async getArticle(@Args('id') id: string): Promise<ArticleEntity> {
-    const article = await this.articleService.findOneById(id);
-    if (!article) throw new NotFoundException(id);
-
-    return article;
+    return await this.articleService.findOneById(id);
   }
 
   @Query(returns => [ArticleEntity], { name: 'articles' })
@@ -29,8 +26,7 @@ export class ArticleResolver {
 
   @Mutation(returns => ArticleEntity)
   async addArticle(@Args('data') data: AddArticleInput): Promise<ArticleEntity> {
-    const article = await this.articleService.create(data);
-    return article;
+    return await this.articleService.create(data);
   }
 
   @Mutation(returns => Boolean)

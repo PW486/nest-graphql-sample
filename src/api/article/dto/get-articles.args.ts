@@ -3,7 +3,7 @@ import { ArgsType, Field, ID } from 'type-graphql';
 
 @ArgsType()
 export class GetArticlesArgs {
-  @Field(type => ID)
+  @Field(type => ID, { nullable: true })
   @IsOptional()
   @IsString()
   public accountId?: string;

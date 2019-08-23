@@ -1,4 +1,3 @@
-import { NotFoundException } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, ResolveProperty, Parent } from '@nestjs/graphql';
 import { AddAccountInput } from './dto/add-account.input';
 import { GetAccountsArgs } from './dto/get-accounts.args';
@@ -16,10 +15,7 @@ export class AccountResolver {
 
   @Query(returns => AccountEntity, { name: 'account' })
   async getAccount(@Args('id') id: string): Promise<AccountEntity> {
-    const account = await this.accountService.findOneById(id);
-    if (!account) throw new NotFoundException(id);
-
-    return account;
+    return await this.accountService.findOneById(id);
   }
 
   @Query(returns => [AccountEntity], { name: 'accounts' })
@@ -29,8 +25,7 @@ export class AccountResolver {
 
   @Mutation(returns => AccountEntity)
   async addAccount(@Args('data') data: AddAccountInput): Promise<AccountEntity> {
-    const account = await this.accountService.create(data);
-    return account;
+    return await this.accountService.create(data);
   }
 
   @Mutation(returns => Boolean)

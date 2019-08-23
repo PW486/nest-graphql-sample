@@ -1,11 +1,10 @@
-import { MaxLength, IsString } from 'class-validator';
+import { MaxLength, IsString, IsEmail } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
 
 @InputType()
 export class AddAccountInput {
   @Field()
-  @IsString()
-  @MaxLength(50)
+  @IsEmail()
   public email: string;
 
   @Field()

@@ -1,29 +1,47 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { AddArticleInput } from './dto/add-article.input';
 import { GetArticlesArgs } from './dto/get-articles.args';
 import { ArticleEntity } from './article.entity';
-import { v4 as uuid } from 'uuid';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ArticleService {
-  private readonly articles: Partial<ArticleEntity>[] = [{ id: '1', title: 'password', content: '486', accountId: '1' }];
+  constructor(
+    @InjectRepository(ArticleEntity)
+    private readonly articleRepository: Repository<ArticleEntity>,
+  ) {}
 
   async create(data: AddArticleInput): Promise<ArticleEntity> {
-    let newArticle: Partial<ArticleEntity> = {};
-    Object.assign(newArticle, data, { id: uuid() });
-    this.articles.push(newArticle);
-    return newArticle as ArticleEntity;
+    const { title, content, accountId } = data;
+
+    const article = this.articleRepository.create({
+      title,
+      content,
+      accountId,
+    })
+    await this.articleRepository.insert(article);
+    return article;
   }
 
   async findOneById(id: string): Promise<ArticleEntity> {
-    return this.articles.find(article => article.id === id) as ArticleEntity;
+    const article = await this.articleRepository.findOne(id);
+    if (!article) throw new NotFoundException();
+    return article;
   }
 
-  async findAll(articleArgs: GetArticlesArgs): Promise<ArticleEntity[]> {
-    return this.articles as ArticleEntity[];
+  async findAll(args: GetArticlesArgs): Promise<ArticleEntity[]> {
+    const { accountId } = args;
+
+    const queryBuilder = this.articleRepository.createQueryBuilder('article');
+    if (accountId) queryBuilder.andWhere('article.accountId = :accountId', { accountId });
+
+    const articleList = await queryBuilder.getMany();
+    return articleList;
   }
 
   async remove(id: string): Promise<boolean> {
+    await this.articleRepository.delete(id);
     return true;
   }
 }
