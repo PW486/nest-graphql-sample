@@ -30,6 +30,7 @@
     "graphql": "^14.4.2",
     "graphql-tools": "^4.0.5",
     "graphql-type-json": "^0.3.0",
+    "nestjs-config": "^1.4.3",
     "pg": "^7.12.1",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",

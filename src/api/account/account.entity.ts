@@ -1,28 +1,28 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import { ArticleEntity } from 'src/api/article/article.entity';
-// import { Column, Entity, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, Entity, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @ObjectType()
-// @Entity('account')
+@Entity('account')
 export class AccountEntity {
   @Field(type => ID)
-  // @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   public id: string;
 
   @Field()
-  // @CreateDateColumn({ type: 'timestamptz' })
+  @CreateDateColumn({ type: 'timestamp with time zone' })
   public createdAt: Date;
 
   @Field()
-  // @UpdateDateColumn({ type: 'timestamptz' })
+  @UpdateDateColumn({ type: 'timestamp with time zone' })
   public updatedAt: Date;
 
   @Field()
-  // @Column({ type: 'text', unique: true })
+  @Column({ type: 'text', unique: true })
   public email: string;
 
   @Field()
-  // @Column('text')
+  @Column('text')
   public password: string;
 
   @Field(type => [ArticleEntity])

@@ -3,9 +3,14 @@ import { ArticleModule } from '../article/article.module';
 import { AccountResolver } from './account.resolver';
 import { AccountService } from './account.service';
 import { DateScalar } from '../../common/scalars/date.scalar';
+import { AccountEntity } from './account.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [forwardRef(() => ArticleModule)],
+  imports: [
+    TypeOrmModule.forFeature([AccountEntity]),
+    forwardRef(() => ArticleModule)
+  ],
   providers: [AccountService, AccountResolver, DateScalar],
   exports: [AccountService],
 })
