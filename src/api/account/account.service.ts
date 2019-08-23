@@ -20,14 +20,16 @@ export class AccountService {
     const account = this.accountRepository.create({
       email,
       password: hashedPassword,
-    })
+    });
     await this.accountRepository.insert(account);
     return account;
   }
 
   async findOneById(id: string): Promise<AccountEntity> {
     const account = await this.accountRepository.findOne(id);
-    if (!account) throw new NotFoundException();
+    if (!account) {
+      throw new NotFoundException();
+    }
     return account;
   }
 
@@ -35,7 +37,9 @@ export class AccountService {
     const { email } = args;
 
     const queryBuilder = this.accountRepository.createQueryBuilder('account');
-    if (email) queryBuilder.andWhere('account.email LIKE :email', { email: `%${email}%` });
+    if (email) {
+      queryBuilder.andWhere('account.email LIKE :email', { email: `%${email}%` });
+    }
 
     const accountList = await queryBuilder.getMany();
     return accountList;

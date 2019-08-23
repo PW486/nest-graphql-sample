@@ -19,14 +19,16 @@ export class ArticleService {
       title,
       content,
       accountId,
-    })
+    });
     await this.articleRepository.insert(article);
     return article;
   }
 
   async findOneById(id: string): Promise<ArticleEntity> {
     const article = await this.articleRepository.findOne(id);
-    if (!article) throw new NotFoundException();
+    if (!article) {
+      throw new NotFoundException();
+    }
     return article;
   }
 
@@ -34,7 +36,9 @@ export class ArticleService {
     const { accountId } = args;
 
     const queryBuilder = this.articleRepository.createQueryBuilder('article');
-    if (accountId) queryBuilder.andWhere('article.accountId = :accountId', { accountId });
+    if (accountId) {
+      queryBuilder.andWhere('article.accountId = :accountId', { accountId });
+    }
 
     const articleList = await queryBuilder.getMany();
     return articleList;

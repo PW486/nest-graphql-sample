@@ -8,10 +8,7 @@ import { ArticleEntity } from '../article/article.entity';
 
 @Resolver(of => AccountEntity)
 export class AccountResolver {
-  constructor(
-    private readonly accountService: AccountService,
-    private readonly articleService: ArticleService,
-  ) {}
+  constructor(private readonly accountService: AccountService, private readonly articleService: ArticleService) {}
 
   @Query(returns => AccountEntity, { name: 'account' })
   async getAccount(@Args('id') id: string): Promise<AccountEntity> {

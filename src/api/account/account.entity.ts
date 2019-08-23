@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from 'type-graphql';
-import { ArticleEntity } from 'src/api/article/article.entity';
+import { ArticleEntity } from '../article/article.entity';
 import { Column, Entity, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @ObjectType()

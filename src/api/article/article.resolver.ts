@@ -9,10 +9,7 @@ import { AccountService } from '../account/account.service';
 
 @Resolver(of => ArticleEntity)
 export class ArticleResolver {
-  constructor(
-    private readonly articleService: ArticleService,
-    private readonly accountService: AccountService,
-  ) {}
+  constructor(private readonly articleService: ArticleService, private readonly accountService: AccountService) {}
 
   @Query(returns => ArticleEntity, { name: 'article' })
   async getArticle(@Args('id') id: string): Promise<ArticleEntity> {

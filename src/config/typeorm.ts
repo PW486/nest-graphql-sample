@@ -9,5 +9,5 @@ export default {
   database: process.env.DB_NAME || 'test',
   synchronize: Boolean(process.env.DB_SYNC) || false,
   logging: Boolean(process.env.DB_LOGGING) || true,
-  entities: [join(__dirname, '..', '**/**.entity.{ts,js}')],
+  entities: [join(__dirname, '..', '**/*.entity.{js,ts}')],
 };
