@@ -1,4 +1,3 @@
-import { NotFoundException } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, ResolveProperty, Parent } from '@nestjs/graphql';
 import { ArticleEntity } from './article.entity';
 import { ArticleService } from './article.service';
