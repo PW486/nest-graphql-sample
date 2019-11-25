@@ -38,7 +38,7 @@
 
 ## Demo
 
-[![Nest GraphQL Sample Kit](https://img.youtube.com/vi/zE6CMRcUWQI/0.jpg)](https://www.youtube.com/watch?v=zE6CMRcUWQI)
+[![Nest GraphQL Sample Kit](https://user-images.githubusercontent.com/14247340/69509746-841c5780-0f7d-11ea-9f36-199fded21833.png)](https://www.youtube.com/watch?v=zE6CMRcUWQI)
 <br>
 [YouTube](https://www.youtube.com/watch?v=zE6CMRcUWQI)
 
